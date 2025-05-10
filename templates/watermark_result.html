@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2><i class="fas fa-image me-2"></i> Watermarking Results</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/watermark">Watermark Images</a></li>
+                <li class="breadcrumb-item active">Results</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="fas fa-check-circle me-2"></i> Watermark Applied Successfully</h4>
+            </div>
+            <div class="card-body text-center">
+                <div class="alert alert-success mb-4">
+                    <i class="fas fa-stamp me-2"></i> Digital watermark has been successfully applied to your image.
+                </div>
+                
+                <h5 class="mb-3">Watermarked Image</h5>
+                <div class="bg-light p-3 rounded d-inline-block">
+                    <img src="{{ image_src }}" alt="Watermarked Image" class="img-fluid" style="max-height: 400px;">
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a href="/watermark" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Watermarking
+                </a>
+                <a href="/download/{{ filename }}" class="btn btn-primary">
+                    <i class="fas fa-download me-2"></i> Download Image
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Watermark Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="icon-box">
+                    <i class="fas fa-stamp"></i>
+                    <div>
+                        <h6>Digital Watermark Applied</h6>
+                        <p class="small text-muted mb-0">Embedded for authentication and integrity</p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h6>Tamper Protection</h6>
+                        <p class="small text-muted mb-0">Image modifications can now be detected</p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-file-medical-alt"></i>
+                    <div>
+                        <h6>Medical Safety</h6>
+                        <p class="small text-muted mb-0">Enhances security of medical imagery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i> Next Steps</h5>
+            </div>
+            <div class="card-body">
+                <p>With your watermarked image, you can:</p>
+                <ul class="small">
+                    <li class="mb-2">Download the watermarked image</li>
+                    <li class="mb-2">Use it in your medical records system</li>
+                    <li class="mb-2">Share it securely with colleagues</li>
+                    <li class="mb-2">Verify its integrity later if needed</li>
+                </ul>
+                <a href="/verify" class="btn btn-sm btn-outline-primary w-100">
+                    <i class="fas fa-check-circle me-2"></i> Verify a Watermarked Image
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2><i class="fas fa-user-shield me-2"></i> Administrator Dashboard</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Admin Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                <h3>Manage Users</h3>
+                <p>Add, view, and manage user accounts</p>
+                <a href="/admin/users" class="btn btn-primary">Manage Users</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <i class="fas fa-history fa-3x text-primary mb-3"></i>
+                <h3>System Logs</h3>
+                <p>View system activity and security logs</p>
+                <a href="/admin/logs" class="btn btn-primary">View Logs</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
+                <h3>Statistics</h3>
+                <p>System usage and security metrics</p>
+                <button class="btn btn-primary" disabled>Coming Soon</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header bg-light">
+        <h4>System Status</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-4">
+                    <h5>Security Status</h5>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Operational</div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>System Resources</h5>
+                    <div class="progress mb-2" style="height: 20px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">CPU: 45%</div>
+                    </div>
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 32%;" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100">Memory: 32%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <h5>Latest Activities</h5>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        System security check
+                        <span class="badge bg-success rounded-pill">Passed</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Database backup
+                        <span class="badge bg-success rounded-pill">Completed</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Software update check
+                        <span class="badge bg-info rounded-pill">Up-to-date</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

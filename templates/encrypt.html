@@ -1,0 +1,156 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2><i class="fas fa-lock me-2"></i> Encrypt Medical Data</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Encrypt Data</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Encryption Form</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('encrypt') }}" enctype="multipart/form-data">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="file" class="form-label">Upload File (Optional)</label>
+                            <input type="file" class="form-control" id="file" name="file">
+                            <div class="form-text">Accepted formats: .txt, .csv, .json, .xml</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="encryption_key" class="form-label">Encryption Key</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <input type="password" class="form-control" id="encryption_key" name="encryption_key" required>
+                                <button class="btn btn-outline-secondary" type="button" id="generateKey">Generate</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="text_data" class="form-label">Text Data (if no file uploaded)</label>
+                        <textarea class="form-control" id="text_data" name="text_data" rows="6" placeholder="Enter text data to encrypt here..."></textarea>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="ecc_public_key" class="form-label">ECC Public Key</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
+                                <input type="text" class="form-control" id="ecc_public_key" name="ecc_public_key" required>
+                                <button class="btn btn-outline-secondary" type="button" id="generateECCKey">Generate</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="rsa_signature" class="form-label">RSA Signature</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                <input type="text" class="form-control" id="rsa_signature" name="rsa_signature" required>
+                                <button class="btn btn-outline-secondary" type="button" id="generateRSA">Generate</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-lock me-2"></i> Encrypt Data
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">ASCON Encryption</h5>
+            </div>
+            <div class="card-body">
+                <div class="icon-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h6>Lightweight Security</h6>
+                        <p class="small text-muted mb-0">Optimized for performance and security</p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <div>
+                        <h6>High-Speed</h6>
+                        <p class="small text-muted mb-0">Fast encryption without compromising security</p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-leaf"></i>
+                    <div>
+                        <h6>Energy Efficient</h6>
+                        <p class="small text-muted mb-0">Low computational overhead</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Instructions</h5>
+            </div>
+            <div class="card-body">
+                <ol class="small">
+                    <li class="mb-2">Upload a file or enter text data to encrypt.</li>
+                    <li class="mb-2">Enter a secure encryption key or generate one.</li>
+                    <li class="mb-2">Provide an ECC public key for secure key exchange.</li>
+                    <li class="mb-2">Include RSA signature for authentication.</li>
+                    <li class="mb-2">Click "Encrypt Data" to secure your information.</li>
+                </ol>
+                <p class="small text-danger mb-0">
+                    <i class="fas fa-exclamation-circle me-1"></i> 
+                    Make sure to safely store your encryption key for future decryption.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Generate random key
+    document.getElementById('generateKey').addEventListener('click', function() {
+        const randomKey = generateRandomString(16);
+        document.getElementById('encryption_key').value = randomKey;
+    });
+    
+    // Generate random ECC key
+    document.getElementById('generateECCKey').addEventListener('click', function() {
+        const randomECCKey = generateRandomString(24);
+        document.getElementById('ecc_public_key').value = randomECCKey;
+    });
+    
+    // Generate random RSA signature
+    document.getElementById('generateRSA').addEventListener('click', function() {
+        const randomRSA = generateRandomString(32);
+        document.getElementById('rsa_signature').value = randomRSA;
+    });
+    
+    function generateRandomString(length) {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return result;
+    }
+});
+</script>
+{% endblock %}

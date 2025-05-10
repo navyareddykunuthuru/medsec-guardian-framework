@@ -1,0 +1,15 @@
+
+/* Additional custom styles can be added here if needed */
+.watermark-preview {
+    max-height: 300px;
+    margin: 20px auto;
+    display: block;
+}
+
+.feature-section {
+    padding: 40px 0;
+}
+
+.btn-action {
+    min-width: 150px;
+}

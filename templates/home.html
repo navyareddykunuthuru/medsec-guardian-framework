@@ -1,0 +1,97 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row align-items-center py-5">
+    <div class="col-lg-6 order-lg-2">
+        <img src="https://img.freepik.com/free-vector/abstract-secure-technology-concept_23-2148333766.jpg" class="img-fluid rounded shadow" alt="Secure healthcare data">
+    </div>
+    <div class="col-lg-6 order-lg-1">
+        <h1 class="display-5 fw-bold mb-3">Lightweight Hybrid Cryptographic Framework</h1>
+        <p class="lead mb-4">Secure your healthcare data with advanced encryption, key exchange, authentication, and watermarking techniques.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="/encrypt" class="btn btn-primary btn-lg px-4 me-md-2">
+                <i class="fas fa-lock me-2"></i>Encrypt Data
+            </a>
+            <a href="/watermark" class="btn btn-outline-primary btn-lg px-4">
+                <i class="fas fa-image me-2"></i>Watermark Images
+            </a>
+        </div>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row">
+    <div class="col-12 text-center mb-4">
+        <h2>Advanced Security Features</h2>
+        <p class="lead text-muted">Our framework combines multiple security technologies</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="feature-card shadow-sm">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>ASCON Encryption</h3>
+            <p>Lightweight encryption algorithm ideal for securing sensitive medical data with minimal computational overhead.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card shadow-sm">
+            <div class="feature-icon">
+                <i class="fas fa-key"></i>
+            </div>
+            <h3>ECC Key Exchange</h3>
+            <p>Elliptic Curve Cryptography provides robust key exchange with smaller key sizes and stronger security.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card shadow-sm">
+            <div class="feature-icon">
+                <i class="fas fa-fingerprint"></i>
+            </div>
+            <h3>Modified RSA Authentication</h3>
+            <p>Enhanced RSA algorithm eliminates pre-computed value storage, reducing potential attack vectors.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="feature-card shadow-sm">
+            <div class="feature-icon">
+                <i class="fas fa-image"></i>
+            </div>
+            <h3>Digital Watermarking</h3>
+            <p>Protect medical images from unauthorized modifications and verify their authenticity.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card shadow-sm">
+            <div class="feature-icon">
+                <i class="fas fa-laptop-medical"></i>
+            </div>
+            <h3>Healthcare Optimized</h3>
+            <p>Specifically designed for electronic health records and medical imaging systems.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card shadow-sm">
+            <div class="feature-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Energy Efficient</h3>
+            <p>Optimized for computational efficiency with minimal energy consumption for sustainable operations.</p>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light rounded p-4 mt-5">
+    <h3 class="mb-3">Welcome, {{ username }}!</h3>
+    <p>Your healthcare data security is our top priority. Use the navigation menu to access encryption, decryption, watermarking, and verification tools.</p>
+</div>
+
+{% endblock %}

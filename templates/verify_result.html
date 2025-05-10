@@ -1,0 +1,147 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2><i class="fas fa-check-circle me-2"></i> Verification Results</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/verify">Verify Image</a></li>
+                <li class="breadcrumb-item active">Results</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header {% if verified %}bg-success{% else %}bg-danger{% endif %} text-white">
+                <h4 class="mb-0">
+                    {% if verified %}
+                        <i class="fas fa-check-circle me-2"></i> Image Verified Successfully
+                    {% else %}
+                        <i class="fas fa-times-circle me-2"></i> Image Verification Failed
+                    {% endif %}
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert {% if verified %}alert-success{% else %}alert-danger{% endif %} mb-4">
+                    {% if verified %}
+                        <i class="fas fa-shield-alt me-2"></i> {{ message }}
+                    {% else %}
+                        <i class="fas fa-exclamation-triangle me-2"></i> {{ message }}
+                    {% endif %}
+                </div>
+                
+                <h5 class="mb-3">Uploaded Image</h5>
+                <div class="text-center bg-light p-3 rounded">
+                    <img src="{{ image_src }}" alt="Verified Image" class="img-fluid" style="max-height: 400px;">
+                </div>
+                
+                {% if verified %}
+                    <div class="mt-4 p-3 border rounded bg-light">
+                        <h6><i class="fas fa-info-circle me-2"></i> Verification Details:</h6>
+                        <ul class="mb-0">
+                            <li>Watermark is present and valid</li>
+                            <li>No signs of tampering or modification detected</li>
+                            <li>Image integrity is confirmed</li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="mt-4 p-3 border rounded bg-light">
+                        <h6><i class="fas fa-exclamation-triangle me-2"></i> Potential Issues:</h6>
+                        <ul class="mb-0">
+                            <li>Watermark is missing or corrupted</li>
+                            <li>Image may have been modified after watermarking</li>
+                            <li>This image may not be from a trusted source</li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a href="/verify" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i> Verify Another Image
+                </a>
+                <a href="/watermark" class="btn btn-primary">
+                    <i class="fas fa-stamp me-2"></i> Watermark New Image
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Security Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="icon-box">
+                    <i class="fas {% if verified %}fa-check-circle text-success{% else %}fa-times-circle text-danger{% endif %}"></i>
+                    <div>
+                        <h6>Watermark Status</h6>
+                        <p class="small text-muted mb-0">
+                            {% if verified %}
+                                Valid watermark detected
+                            {% else %}
+                                No valid watermark found
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas {% if verified %}fa-shield-alt text-success{% else %}fa-exclamation-triangle text-danger{% endif %}"></i>
+                    <div>
+                        <h6>Image Integrity</h6>
+                        <p class="small text-muted mb-0">
+                            {% if verified %}
+                                No tampering detected
+                            {% else %}
+                                Integrity compromised
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas {% if verified %}fa-thumbs-up text-success{% else %}fa-thumbs-down text-danger{% endif %}"></i>
+                    <div>
+                        <h6>Recommendation</h6>
+                        <p class="small text-muted mb-0">
+                            {% if verified %}
+                                Safe for medical use
+                            {% else %}
+                                Not recommended for medical use
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i> Next Steps</h5>
+            </div>
+            <div class="card-body">
+                {% if verified %}
+                    <p>Since this image has been verified:</p>
+                    <ul class="small">
+                        <li class="mb-2">You can safely use it for diagnosis or record-keeping</li>
+                        <li class="mb-2">It can be shared with other healthcare professionals</li>
+                        <li class="mb-2">The image is suitable for medical documentation</li>
+                    </ul>
+                {% else %}
+                    <p>Since this image failed verification:</p>
+                    <ul class="small">
+                        <li class="mb-2">Do not use for medical diagnosis or treatment decisions</li>
+                        <li class="mb-2">Request the original image from a trusted source</li>
+                        <li class="mb-2">Report suspicious activity to your IT security team</li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2><i class="fas fa-unlock me-2"></i> Decryption Results</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/decrypt">Decrypt Data</a></li>
+                <li class="breadcrumb-item active">Results</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="fas fa-check-circle me-2"></i> Decryption Successful</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-success mb-4">
+                    <i class="fas fa-unlock-alt me-2"></i> Your data has been successfully decrypted.
+                </div>
+                
+                <h5>Decrypted Data</h5>
+                <div class="bg-light p-3 rounded" style="max-height: 400px; overflow-y: auto;">
+                    <pre>{{ decrypted_data }}</pre>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a href="/decrypt" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Decryption
+                </a>
+                <button class="btn btn-primary" id="copy-data">
+                    <i class="fas fa-copy me-2"></i> Copy Data
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Security Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="icon-box">
+                    <i class="fas fa-unlock"></i>
+                    <div>
+                        <h6>ASCON Decryption</h6>
+                        <p class="small text-muted mb-0">Successfully reversed encryption</p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-file-alt"></i>
+                    <div>
+                        <h6>Data Integrity</h6>
+                        <p class="small text-muted mb-0">Original data restored without corruption</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i> Next Steps</h5>
+            </div>
+            <div class="card-body">
+                <p>Now that your data has been decrypted, you may:</p>
+                <ul class="small">
+                    <li>Copy the decrypted data</li>
+                    <li>Save it to a secure location</li>
+                    <li>Process it in your healthcare application</li>
+                </ul>
+                <p class="small mb-0">
+                    <strong>Remember:</strong> Maintain confidentiality of sensitive medical information.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('copy-data').addEventListener('click', function() {
+        const decryptedData = document.querySelector('pre').textContent;
+        navigator.clipboard.writeText(decryptedData).then(function() {
+            // Change button text temporarily
+            const button = document.getElementById('copy-data');
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check me-2"></i> Copied!';
+            setTimeout(function() {
+                button.innerHTML = originalHTML;
+            }, 1500);
+        });
+    });
+});
+</script>
+{% endblock %}

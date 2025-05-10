@@ -1,0 +1,113 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2><i class="fas fa-image me-2"></i> Watermark Medical Images</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Watermark Images</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Image Watermarking</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('watermark') }}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload Medical Image</label>
+                        <input type="file" class="form-control" id="image" name="image" required accept="image/*">
+                        <div class="form-text">Accepted formats: PNG, JPEG, DICOM (converted)</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="watermark_text" class="form-label">Watermark Text</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-font"></i></span>
+                            <input type="text" class="form-control" id="watermark_text" name="watermark_text" required placeholder="Hospital name, Patient ID, etc.">
+                        </div>
+                        <div class="form-text">This text will be embedded in the image as a watermark</div>
+                    </div>
+                    
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-stamp me-2"></i> Apply Watermark
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="card-footer bg-light">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <i class="fas fa-info-circle text-primary fs-4"></i>
+                    </div>
+                    <div class="col">
+                        <p class="small mb-0">
+                            Digital watermarking embeds authentication markers in medical images to ensure 
+                            their integrity and prevent unauthorized modifications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Benefits of Watermarking</h5>
+            </div>
+            <div class="card-body">
+                <div class="icon-box">
+                    <i class="fas fa-fingerprint"></i>
+                    <div>
+                        <h6>Image Authentication</h6>
+                        <p class="small text-muted mb-0">Verify image source and integrity</p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-user-shield"></i>
+                    <div>
+                        <h6>Tamper Detection</h6>
+                        <p class="small text-muted mb-0">Identify unauthorized modifications</p>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-copyright"></i>
+                    <div>
+                        <h6>Copyright Protection</h6>
+                        <p class="small text-muted mb-0">Prevent unauthorized use of medical imagery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Use Cases</h5>
+            </div>
+            <div class="card-body">
+                <ul class="small">
+                    <li class="mb-2"><strong>Radiology Images:</strong> Add patient ID and acquisition date</li>
+                    <li class="mb-2"><strong>Research Data:</strong> Mark with institution name and study ID</li>
+                    <li class="mb-2"><strong>Telemedicine:</strong> Add physician identifiers and timestamp</li>
+                    <li class="mb-2"><strong>Medical Records:</strong> Embed healthcare provider information</li>
+                </ul>
+                <div class="alert alert-info small mb-0">
+                    <i class="fas fa-lightbulb me-1"></i> 
+                    Watermarks can be visible or invisible depending on security requirements.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
